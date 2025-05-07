@@ -11,7 +11,6 @@ class CameraNode(Node):
         super().__init__('camera_node')
 
         self.publisher_ = self.create_publisher(Image, '/camera/image', 1)
-        #self.service = self.create_service(CaptureImage, 'capture_image', self.capture_image_callback)
         self.cap = cv2.VideoCapture(0)
         if not self.cap.isOpened():
             self.get_logger().error('Could not open camera.')
@@ -46,14 +45,7 @@ class CameraNode(Node):
             self.get_logger().info('Image published.')
         else:
             self.get_logger().error('Failed to capture image from camera.')
-    # def capture_image_callback(self, request, response):
-    #     ret, frame = self.cap.read()
-    #     if ret:
-    #         response.image = self.bridge.cv2_to_imgmsg(frame, encoding='bgr8')
-    #         self.get_logger().info('Captured image upon request.')
-    #     else:
-    #         self.get_logger().error('Failed to capture image.')
-    #     return response
+
 
     def destroy_node(self):
         self.cap.release()
