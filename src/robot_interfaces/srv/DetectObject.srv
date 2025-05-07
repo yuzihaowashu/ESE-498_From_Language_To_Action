@@ -1,0 +1,4 @@
+string prompt
+---
+bool success
+string detected_objects_json
